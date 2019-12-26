@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 
 using namespace std;
@@ -7,13 +8,15 @@ using namespace std;
 
 int main()
 {
-    int r=f1(444);
-    cout<<r<<endl;
-   vector<string> msg {"Hello", "C++", "World", "from", "VS Code", "and the C++ extension!"};
-
-   for (const string& word : msg)
-   {
-      cout << word << " ";
-   }
-   cout << endl;
+  vector<int> v{3,4,52,22,22,32,33,11};
+   int const target=3;
+  int c=count(v.begin(),v.end(),target);
+  std::cout<<c<<endl;
+  int odd;
+  odd=count_if(v.begin(),v.end(),[](auto x){return x%2!=0;});
+  cout<<"odd:"<<odd<<endl;
+  for(auto item:v)
+  {
+     cout<<item<<" ";
+  }
 }
