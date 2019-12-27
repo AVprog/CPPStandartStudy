@@ -1,22 +1,64 @@
 #include <iostream>
-#include <vector>
+#include <string.h>
 #include <algorithm>
-#include <string>
-
+#include <map>
+#include <vector>
+ 
 using namespace std;
-#include "f.h"
+
+class Employee
+{
+  char name[100];
+  int payment;
+  public:
+  
+  Employee(char * name, int payment)
+  {
+     strcpy(this->name,name);
+     this->payment=payment;
+
+  }  
+
+  char* GetName()
+  {
+    return name;
+  }
+
+  void SetName(char* name)
+  {
+    strcpy(this->name,name);
+  }
+
+  int GetPayment()
+  {
+    return this->payment;
+  }
+
+  void SetPayment(int payment)
+  {
+    this->payment=payment;
+  }
+};
 
 int main()
 {
-  vector<int> v{3,4,52,22,22,32,33,11};
-   int const target=3;
-  int c=count(v.begin(),v.end(),target);
-  std::cout<<c<<endl;
-  int odd;
-  odd=count_if(v.begin(),v.end(),[](auto x){return x%2!=0;});
-  cout<<"odd:"<<odd<<endl;
-  for(auto item:v)
+ 
+  char buf[]="ivan";
+  Employee* emp1=new Employee(buf,1000);
+  Employee* emp2=new Employee("Masha",500);
+  Employee* emp3=new Employee("Gaga",800);
+  vector<Employee*> empVector1{emp1,emp2,emp3};
+
+  for(auto emp:empVector1)
   {
-     cout<<item<<" ";
+    cout<<emp->GetName()<<" "<<emp->GetPayment()<<endl;
   }
+
+  cout<<endl;
+
+  int res=count_if(empVector1.begin(),empVector1.end(),[](auto empItem){return empItem->GetPayment()>600;});
+
+  cout<<res<<endl<<endl;
+
+    return 0;
 }
